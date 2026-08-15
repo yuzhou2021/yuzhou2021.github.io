@@ -226,6 +226,14 @@ function switchPriceTab(p) {
 }
 
 // === Init ===
-initFilters();
-applyFilter();
-renderSummary();
+// 检查筛选面板元素是否存在（防止因 HTML 注释导致 JS 报错中断后续执行）
+if (document.getElementById('f-price') && document.getElementById('f-down') && document.getElementById('f-gjj')) {
+  initFilters();
+}
+if (document.getElementById('result-area')) {
+  applyFilter();
+}
+// 全量数据总览始终渲染
+if (document.getElementById('summary-area')) {
+  renderSummary();
+}
