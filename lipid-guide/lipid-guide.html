@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>血脂管理指南 · 家庭实用笔记</title>
+<style>
+  :root{
+    --background:#f6f7f9;--foreground:#1a2233;--card:#ffffff;--card-foreground:#1a2233;
+    --popover:#ffffff;--popover-foreground:#1a2233;--primary:#0f6fde;--primary-foreground:#ffffff;
+    --secondary:#e8ebf0;--secondary-foreground:#1a2233;--muted:#eef0f4;--muted-foreground:#5b667a;
+    --accent:#eaf1fb;--accent-foreground:#123c78;--destructive:#d5304f;
+    --border:#dde1e8;--input:#ffffff;--ring:#0f6fde;
+    --blue:#0f6fde;--orange:#c96a10;--green:#177f4b;--red:#c53049;--purple:#6a51d6;--yellow:#9a7b00;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --background:#151a22;--foreground:#e7ebf2;--card:#1d2430;--card-foreground:#e7ebf2;
+      --popover:#222b39;--popover-foreground:#e7ebf2;--primary:#5aa2ff;--primary-foreground:#0b1320;
+      --secondary:#2a3342;--secondary-foreground:#e7ebf2;--muted:#232b38;--muted-foreground:#9aa6b8;
+      --accent:#20344e;--accent-foreground:#bcd7ff;--destructive:#ff738c;
+      --border:#333d4d;--input:#1d2430;--ring:#5aa2ff;
+      --blue:#5aa2ff;--orange:#f0924a;--green:#4cc38a;--red:#ff738c;--purple:#a78bfa;--yellow:#e3c046;
+    }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--background);color:var(--foreground);font-family:system-ui,-apple-system,"Segoe UI","Microsoft YaHei",sans-serif;font-size:14px;line-height:1.65}
+  .wrap{max-width:920px;margin:0 auto;padding:24px 18px 60px}
+  h2{font-size:20px;margin:0;font-weight:600}h3{font-size:16px;margin:0;font-weight:600}h4{font-size:14px;margin:0 0 6px;font-weight:600}
+  p{margin:6px 0}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px}
+  .viz-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+  .viz-row{display:flex;align-items:center;flex-wrap:wrap}
+  .viz-stat-value{font-size:24px;font-weight:600;line-height:1.2}
+  .viz-badge{display:inline-block;padding:2px 10px;border-radius:999px;background:var(--accent);color:var(--accent-foreground);font-size:12px;font-weight:500}
+  .btn{appearance:none;border:1px solid var(--border);background:var(--card);color:var(--foreground);border-radius:8px;padding:6px 16px;font-size:14px;cursor:pointer}
+  .btn:hover{border-color:var(--ring)}
+  .btn-primary{background:var(--primary);color:var(--primary-foreground);border-color:var(--primary)}
+  .btn-ghost{background:transparent;border-color:transparent;color:var(--muted-foreground)}
+  .nav-pills{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 18px;padding:0;border-bottom:1px solid var(--border);padding-bottom:12px}
+  .nav-link{border:1px solid var(--border);background:var(--card);color:var(--foreground);border-radius:999px;padding:5px 14px;font-size:13px;cursor:pointer}
+  .nav-link.active{background:var(--primary);color:var(--primary-foreground);border-color:var(--primary)}
+  .form-control{border:1px solid var(--border);border-radius:8px;padding:6px 10px;font-size:16px;background:var(--input);color:var(--foreground)}
+  .form-label{font-size:13px;color:var(--muted-foreground);margin-bottom:6px;display:block}
+  .table{width:100%;border-collapse:collapse;font-size:13px}
+  .table th,.table td{padding:7px 10px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
+  .table-sm th,.table-sm td{padding:5px 8px}
+  .table thead th{color:var(--muted-foreground);font-weight:500}
+  .table-responsive{overflow-x:auto;border:1px solid var(--border);border-radius:8px}
+  .table-responsive .table{margin:0}
+  .text-muted{color:var(--muted-foreground)}
+  .text-small{font-size:12px;color:var(--muted-foreground)}
+  [hidden]{display:none !important}
+  hr{border:none;border-top:1px solid var(--border)}
+  @media print{.nav-pills{display:none}[hidden]{display:none !important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="lipid-guide-notes">
+
+<style>
+  #lipid-guide-notes { font-variant-numeric: tabular-nums; }
+  #lipid-guide-notes .rg { background: color-mix(in srgb, var(--green) 10%, transparent); border-left: 3px solid var(--green); border-radius: 6px; padding: 10px 14px; margin: 8px 0; }
+  #lipid-guide-notes .ry { background: color-mix(in srgb, var(--yellow) 18%, transparent); border-left: 3px solid var(--yellow); border-radius: 6px; padding: 10px 14px; margin: 8px 0; }
+  #lipid-guide-notes .rr { background: color-mix(in srgb, var(--red) 10%, transparent); border-left: 3px solid var(--red); border-radius: 6px; padding: 10px 14px; margin: 8px 0; }
+  #lipid-guide-notes .rec-tag { font-weight: 500; margin-right: 6px; white-space: nowrap; }
+  #lipid-guide-notes .rec-list { margin: 4px 0 0 0; padding-left: 1.2em; }
+  #lipid-guide-notes .rec-list li { margin: 3px 0; }
+  #lipid-guide-notes .panel-h { display: flex; align-items: center; gap: 8px; margin: 18px 0 8px 0; }
+  #lipid-guide-notes .panel-h i { width: 18px; height: 18px; color: var(--primary); flex: none; }
+  #lipid-guide-notes .star-badge { display: inline-block; background: color-mix(in srgb, var(--red) 14%, transparent); color: var(--foreground); border-radius: 999px; padding: 1px 10px; font-size: 12px; font-weight: 500; vertical-align: middle; margin-left: 6px; }
+  #lipid-guide-notes .kw { color: var(--primary); font-weight: 500; }
+  #lipid-guide-notes .num { font-weight: 500; }
+  #lipid-guide-notes .case-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 10px; }
+  #lipid-guide-notes .case-card { border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; }
+  #lipid-guide-notes .case-card h4 { margin: 0 0 6px 0; font-weight: 500; font-size: 14px; }
+  #lipid-guide-notes .case-card p { margin: 4px 0; font-size: 13px; }
+  #lipid-guide-notes .wiz-q { font-size: 16px; font-weight: 500; margin: 6px 0 12px 0; }
+  #lipid-guide-notes .wiz-step { color: var(--muted-foreground); font-size: 12px; }
+  #lipid-guide-notes .wiz-result-val { font-size: 34px; font-weight: 500; line-height: 1.1; }
+  #lipid-guide-notes .calc-out { font-size: 20px; font-weight: 500; }
+  #lipid-guide-notes .flag-120 { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 8px; margin-top: 8px; }
+  #lipid-guide-notes .flag-120 > div { border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
+  #lipid-guide-notes .footnote { color: var(--muted-foreground); font-size: 12px; margin-top: 16px; border-top: 1px solid var(--border); padding-top: 10px; }
+  #lipid-guide-notes ul.tight { margin: 6px 0; padding-left: 1.3em; }
+  #lipid-guide-notes ul.tight li { margin: 4px 0; }
+</style>
+
+<div class="nav nav-pills" role="tablist" aria-label="血脂管理手册章节">
+  <button class="nav-link active" id="tg-overview" role="tab" aria-controls="p-overview" aria-selected="true" type="button">全书总览</button>
+  <button class="nav-link" id="tg-lab" role="tab" aria-controls="p-lab" aria-selected="false" type="button">化验单 · 风险自测</button>
+  <button class="nav-link" id="tg-chol" role="tab" aria-controls="p-chol" aria-selected="false" type="button">胆固醇专题<span class="star-badge">重点</span></button>
+  <button class="nav-link" id="tg-tg" role="tab" aria-controls="p-tg" aria-selected="false" type="button">甘油三酯专题<span class="star-badge">重点</span></button>
+  <button class="nav-link" id="tg-med" role="tab" aria-controls="p-med" aria-selected="false" type="button">用药指南</button>
+  <button class="nav-link" id="tg-diet" role="tab" aria-controls="p-diet" aria-selected="false" type="button">饮食 · 运动</button>
+  <button class="nav-link" id="tg-case" role="tab" aria-controls="p-case" aria-selected="false" type="button">实战案例</button>
+</div>
+
+<!-- ================= 总览 ================= -->
+<div id="p-overview" role="tabpanel" aria-labelledby="tg-overview">
+
+  <div class="panel-h"><h2 style="margin:0;">《中国人的血脂管理指南》家庭实用笔记</h2></div>
+  <p style="margin:6px 0 4px 0;">作者鹤立烟雨（三甲医院心血管医生，全网千万粉丝科普作者）。全书依据《中国血脂管理指南（2023年）》等权威指南写成，被称为<span class="kw">「高血脂临床指南的患者版」</span>。本笔记面向「家人血脂偏高」的实用场景，保留原书三级颜色标记：</p>
+  <div class="viz-row" style="gap:8px;">
+    <span class="viz-badge" style="background:color-mix(in srgb, var(--green) 16%, transparent);">绿＝强烈推荐</span>
+    <span class="viz-badge" style="background:color-mix(in srgb, var(--yellow) 20%, transparent);">黄＝一般推荐</span>
+    <span class="viz-badge" style="background:color-mix(in srgb, var(--red) 14%, transparent);">红＝不推荐</span>
+  </div>
+
+  <div class="panel-h"><h3 style="margin:0;">给家人的十件要紧事</h3></div>
+  <ul class="tight">
+    <li>高血脂大多<span class="kw">没有症状</span>，不能靠感觉判断，要靠抽血筛查（社区医院 20 元查血脂四项）。</li>
+    <li>看化验单优先盯两项：<span class="kw">低密度脂蛋白胆固醇（坏胆固醇）</span>和<span class="kw">甘油三酯</span>。</li>
+    <li>化验单没有箭头 ≠ 没问题——先算出自己的危险分层和目标值（见「风险自测」页）。</li>
+    <li>坏胆固醇不同人群目标不同：<span class="num">3.4 / 2.6 / 1.8 / 1.4</span> mmol/L，风险越高目标越低。</li>
+    <li>甘油三酯 ≥<span class="num">5.6</span> mmol/L 会大幅增加急性胰腺炎风险，需尽快药物干预。</li>
+    <li>生活方式干预永远排在第一位：管住嘴（戒酒、控油、戒反式脂肪）＋迈开腿（每周 150 分钟有氧）。</li>
+    <li>他汀类是降胆固醇的基石，收益远大于风险，不必因副作用传闻拒药。</li>
+    <li>吃降脂药不是都要吃一辈子——满足「血脂稳、单药可控、无器官损害」三条件才可能停药。</li>
+    <li>保健品（鱼油、红曲、水蛭素、三七）不能替代药物，「洗血」疗法对绝大多数人是骗局。</li>
+    <li>每个人一生至少查一次<span class="kw">脂蛋白 a</span>，评估先天心血管风险。</li>
+  </ul>
+
+  <div class="panel-h"><h3 style="margin:0;">全书五章脉络速览</h3></div>
+  <div class="table-responsive"><table class="table table-sm">
+    <thead><tr><th>章</th><th>讲什么</th><th>核心记忆点</th></tr></thead>
+    <tbody>
+      <tr><td>1 发现高血脂</td><td>为什么高血脂越来越多、如何发现、化验单怎么看、会不会遗传</td><td>七种人必须筛查；&lt;40 岁每 2–5 年查一次，≥40 岁每年一次；警惕五大「幕后黑手」疾病</td></tr>
+      <tr><td>2 甘油三酯</td><td>甘油三酯的危害与预防、药物选择（他汀/贝特/鱼油）</td><td>胰腺炎是头号威胁；戒酒立竿见影；油基本是「吃进去的」</td></tr>
+      <tr><td>3 胆固醇</td><td>胆固醇危害、累积暴露量、家族性高胆固醇血症、他汀全解、停药与复查</td><td>「沉默的杀手」；越早控制越好；他汀 6% 法则</td></tr>
+      <tr><td>4 方法对了轻松降脂</td><td>运动、保健品辟谣、选油、食物宜忌、食谱、看标签</td><td>每天 3 小勺油；远离反式脂肪；没有任何保健品能降脂</td></tr>
+      <tr><td>5 实战指南</td><td>风险筛查四问法、颈动脉斑块处理、7 个真实案例</td><td>同一张化验单，不同人处理完全不同</td></tr>
+    </tbody>
+  </table></div>
+</div>
+
+<!-- ================= 化验单·风险自测 ================= -->
+<div id="p-lab" role="tabpanel" aria-labelledby="tg-lab" hidden>
+
+  <div class="panel-h"><h3 style="margin:0;">血脂化验单怎么读</h3></div>
+  <div class="table-responsive"><table class="table table-sm">
+    <thead><tr><th>指标</th><th>俗称</th><th>怎么理解</th><th>关键数值（mmol/L）</th></tr></thead>
+    <tbody>
+      <tr><td><span class="kw">低密度脂蛋白胆固醇</span></td><td>坏胆固醇</td><td>钻进血管壁长斑块，冠心病、心梗、脑梗的罪魁祸首；<span class="kw">首要干预目标</span></td><td>普通人 &lt;3.4；目标按危险分层 3.4 / 2.6 / 1.8 / 1.4</td></tr>
+      <tr><td><span class="kw">甘油三酯</span></td><td>—</td><td>主要威胁是胰腺，其次增加心血管风险、诱发胰岛素抵抗</td><td>&lt;1.7 理想；≥2.3 升高；≥5.6 胰腺炎风险大增</td></tr>
+      <tr><td>高密度脂蛋白胆固醇</td><td>好胆固醇</td><td>血管清道夫，越高越好，有向上箭头也没关系</td><td>&lt;1.0 偏低（风险增加）</td></tr>
+      <tr><td>总胆固醇</td><td>—</td><td>好 + 坏的总和，普通人参考意义不大</td><td>—</td></tr>
+      <tr><td>非高密度脂蛋白胆固醇</td><td>—</td><td>各种「坏」胆固醇总和，<span class="kw">次要干预目标</span></td><td>随 LDL-C 目标对应管理</td></tr>
+      <tr><td>脂蛋白 a</td><td>坏胆固醇的兄弟</td><td>天生注定、几乎无法干预；越高心血管风险越高</td><td>理想 &lt;50 mg/dL；＞300 后每升 100 风险翻 1 倍</td></tr>
+      <tr><td>载脂蛋白 A1 / B</td><td>好司机 / 坏司机</td><td>血脂的搬运工；目前不是治疗靶点，普通人间接参考即可</td><td>—</td></tr>
+    </tbody>
+  </table></div>
+  <div class="ry" style="margin-top:10px;"><span class="rec-tag">一般推荐</span>测甘油三酯建议空腹采血（至少空腹 8 小时）；小而密 LDL、载脂蛋白 B 等新指标无须过度关注。</div>
+
+  <div class="panel-h"><h3 style="margin:0;">谁必须筛查血脂</h3></div>
+  <div class="viz-grid">
+    <div class="card"><div class="text-muted" style="font-size:12px;">重点人群</div><ul class="tight" style="margin:4px 0 0 0;"><li>50 岁以上或绝经后女性</li><li>40 岁以上男性</li><li>吸烟超过 10 年</li><li>糖尿病 / 高血压患者</li><li>父母有早发心血管病史（男 &lt;55 岁、女 &lt;65 岁）</li><li>肥胖：BMI ≥24，或腰围女 &gt;75cm、男 &gt;80cm（内脏脂肪多）</li></ul></div>
+    <div class="card"><div class="text-muted" style="font-size:12px;">筛查频率与警示信号</div><ul class="tight" style="margin:4px 0 0 0;"><li>&lt;40 岁：每 2–5 年一次血脂四项</li><li>≥40 岁：每年至少一次</li><li>一生至少查一次脂蛋白 a</li><li>出现黄色瘤、头晕、肢体麻木刺痛、视力模糊、胸闷胸痛 → 尽快查血脂</li></ul></div>
+  </div>
+  <div class="rr"><span class="rec-tag">不推荐</span>靠症状判断有没有高血脂——绝大多数高血脂患者平时毫无症状。</div>
+
+  <div class="panel-h"><h3 style="margin:0;">交互自测：我的坏胆固醇目标是多少</h3></div>
+  <p style="margin:4px 0;">原书「超级简化版风险筛查」四问法（作者结合临床经验精简自指南），回答即可得到你的低密度脂蛋白胆固醇控制目标：</p>
+  <div class="card" id="wiz-box" style="padding:14px;">
+    <div class="wiz-step" id="wiz-step"></div>
+    <div class="wiz-q" id="wiz-q" aria-live="polite"></div>
+    <div class="viz-row" style="gap:8px;">
+      <button class="btn btn-primary" type="button" id="wiz-yes">是</button>
+      <button class="btn" type="button" id="wiz-no">否</button>
+      <button class="btn btn-ghost" type="button" id="wiz-restart" hidden>重新开始</button>
+    </div>
+    <div id="wiz-result" aria-live="polite" style="margin-top:10px;"></div>
+  </div>
+  <p class="text-small" style="margin:6px 0;">提示：冠心病的确诊标准是冠脉 CT 或造影确认狭窄 ≥50%，仅凭心电图「诊断冠心病」不算。</p>
+
+  <div class="panel-h"><h3 style="margin:0;">五级危险分层与目标值（指南详细版）</h3></div>
+  <div class="table-responsive"><table class="table table-sm">
+    <thead><tr><th>分层</th><th>人群（满足任一）</th><th>LDL-C 目标</th></tr></thead>
+    <tbody>
+      <tr><td><span style="color:var(--red);font-weight:500;">超高危</span></td><td>冠心病 ＋ 以下任一：①两年内 ≥2 次心梗/脑梗/急性肢端缺血；②冠状动脉多支病变；③糖尿病；④近 1 年内发生急性心梗</td><td class="num">&lt;1.4 且较基线降 ≥50%</td></tr>
+      <tr><td><span style="color:var(--red);font-weight:500;">极高危</span></td><td>①冠心病；②糖尿病＋高血压；③糖尿病＋1 项其他危险因素</td><td class="num">&lt;1.8 且较基线降 ≥50%</td></tr>
+      <tr><td><span style="color:var(--orange);font-weight:500;">高危</span></td><td>①糖尿病；②高血压＋2 项其他危险因素；③慢性肾病</td><td class="num">&lt;2.6</td></tr>
+      <tr><td><span style="color:var(--yellow);font-weight:500;">中危</span></td><td>①≥2 项其他危险因素；②高血压＋1 项其他危险因素</td><td class="num">&lt;2.6</td></tr>
+      <tr><td><span style="color:var(--green);font-weight:500;">低危</span></td><td>不符合以上任何标准的比较健康的人</td><td class="num">&lt;3.4</td></tr>
+    </tbody>
+  </table></div>
+  <p class="text-small" style="margin:4px 0;">其他危险因素：年龄（男 ≥45 / 女 ≥55）、吸烟、HDL-C 偏低、BMI ≥28、直系亲属 55 岁前患心血管病。</p>
+  <div class="rr"><span class="rec-tag">不推荐</span>只盯着化验单上的箭头判断血脂达标与否——支架术后病人「没箭头就停药」是血管再堵的常见原因。</div>
+
+  <div class="panel-h"><h3 style="margin:0;">体检发现颈动脉斑块怎么办</h3></div>
+  <ul class="tight">
+    <li>斑块是衰老的自然进程（像长白头发），关键看<span class="kw">年龄与斑块是否匹配</span>，不必过度恐慌。</li>
+    <li>报告看「内中膜厚度（IMT）」：<span class="num">&lt;2.5mm</span> → LDL-C 控制在 3.4 以下即可；<span class="num">≥2.5mm</span> → 建议控制到 2.6 以下。</li>
+    <li><span class="kw">低回声 / 混合回声斑块</span>＝不稳定、油多、有逆转机会，可积极降脂（2.6 以下，有意愿者 1.8 以下）；<span class="kw">高回声斑块</span>＝稳定、钙化，强化降脂意义小，和平共处。</li>
+  </ul>
+  <div class="rr"><span class="rec-tag">不推荐</span>单纯颈动脉斑块（无症状、狭窄 &lt;50%）吃阿司匹林——出血风险超过获益，很多医生也会开错。</div>
+
+  <div class="panel-h"><h3 style="margin:0;">别忽略五大「幕后黑手」</h3></div>
+  <div class="table-responsive"><table class="table table-sm">
+    <thead><tr><th>疾病</th><th>报警信号</th><th>怎么查</th></tr></thead>
+    <tbody>
+      <tr><td>糖尿病</td><td>吃得多、喝得多、尿得多、体重减少</td><td>空腹血糖；高危人群至少每 3 年一次</td></tr>
+      <tr><td>甲状腺功能减退</td><td>精神不振、怕冷、心动过缓、体重增加</td><td>甲状腺功能＋甲状腺超声</td></tr>
+      <tr><td>肾病综合征</td><td>尿中细小泡沫多、浮肿一按一个坑</td><td>血、尿化验</td></tr>
+      <tr><td>多囊卵巢综合征</td><td>女性体毛旺盛、痤疮、月经失调、不孕</td><td>妇科彩超</td></tr>
+      <tr><td>胆汁淤积性疾病</td><td>全身瘙痒、皮肤眼白发黄、尿如酱油、大便颜色浅</td><td>血液检查＋肝胆超声</td></tr>
+    </tbody>
+  </table></div>
+  <p class="text-small" style="margin:4px 0;">生活习惯好、体型瘦却血脂高，或吃了药血脂仍降不下来，先排查这些继发疾病。</p>
+</div>
+
+<!-- ================= 胆固醇专题 ================= -->
+<div id="p-chol" role="tabpanel" aria-labelledby="tg-chol" hidden>
+
+  <div class="panel-h"><h3 style="margin:0;">核心概念：累积暴露量——为什么越早控制越好<span class="star-badge">重点</span></h3></div>
+  <ul class="tight">
+    <li>血管像一个<span class="kw">装胆固醇的仓库</span>：胆固醇越高装得越快，仓库装满（阈值突破）那天，心梗脑梗就找上门。单次化验值不重要，<span class="kw">累积暴露量（浓度 × 时间）</span>才决定斑块。</li>
+    <li>家族性高胆固醇血症患者的经典数据：<span class="kw">不用药约 35 岁患冠心病</span>；18 岁开始用大剂量他汀 → 推迟到 48 岁；10 岁开始小剂量他汀 → 推迟到 53 岁（正常人约 55 岁）。两种人生只差一片降脂药。</li>
+    <li>对健康普通人，LDL-C 没有所谓「标准值」，<span class="kw">越低越好</span>（一般认为 1.0 以上范围内）。</li>
+    <li>年轻人高不会马上出事，年长者稍有升高就可能「装满」——所以越早控制，收益越大。</li>
+  </ul>
+  <div class="rg"><span class="rec-tag">强烈推荐</span>胆固醇不达标时，越早控制、减少累积暴露量，效果越好。</div>
+
+  <div class="panel-h"><h3 style="margin:0;">「沉默的杀手」召唤的四大疾病</h3></div>
+  <div class="case-grid">
+    <div class="case-card"><h4>① 冠心病（第一大杀手）</h4><p>斑块堵冠状动脉、狭窄 ≥50% 即诊断。心脏长期缺血 → 心衰；斑块破裂 → 心肌梗死甚至猝死。</p><p class="text-small">典型胸痛五特点：耗氧增加时诱发；位置在胸骨后；可放射到左肩、下颌、手臂；持续 3–5 分钟休息可缓解；压榨紧缩感（不是针扎样）。</p></div>
+    <div class="case-card"><h4>② 脑梗死</h4><p>斑块堵塞脑 / 颈部血管，「非死即残」。识别「120 口诀」立刻拨打 120。</p><p class="text-small">1 张脸不对称、2 只胳膊一侧抬不起、0（聆）听说话不清。</p></div>
+    <div class="case-card"><h4>③ 肾动脉狭窄</h4><p>肾脏缺血萎缩、肌酐升高、顽固性高血压，最终可能透析。有动脉狭窄表现＋高血压 / 肌酐升高者应筛查。</p></div>
+    <div class="case-card"><h4>④ 外周血管病</h4><p>下肢动脉堵塞 → 间歇性跛行（走一段腿疼、歇会儿又能走），重者截肢。看血管外科，做个下肢血管 B 超即可诊断。</p></div>
+  </div>
+  <div class="rg"><span class="rec-tag">强烈推荐</span>出现典型胸痛 /「120 症状」立即就医；检查项目（运动心电图、冠脉 CTA、造影等）交给医生选择，不自行点单。</div>
+
+  <div class="panel-h"><h3 style="margin:0;">家族性高胆固醇血症：年轻人心梗的元凶</h3></div>
+  <ul class="tight">
+    <li>单基因遗传病，约每 200–250 人中有 1 例（杂合子）；纯合子 30 万–100 万人中 1 例，十几岁就可心梗（作者见过最小的心梗病人仅 11 岁）。</li>
+    <li>三个疑点：①LDL-C 长期 <span class="num">≥4.9</span> mmol/L；②肌腱黄色瘤、角膜脂性弓；③本人或一级亲属早发（男 &lt;55 / 女 &lt;65 岁）冠心病、心梗、脑梗。</li>
+    <li>确诊靠基因检测。<span class="kw">一旦确诊立刻治疗</span>；父母 LDL-C ≥4.9 的，建议子女 10 岁起筛查血脂。</li>
+  </ul>
+
+  <div class="panel-h"><h3 style="margin:0;">高胆固醇的饮食与生活要点</h3></div>
+  <ul class="tight">
+    <li>血液胆固醇与「直接吃进去的胆固醇」关系不大（吃 10 个蛋黄第二天也不一定高），它受<span class="kw">代谢</span>影响大——饮食是通过改善代谢起作用。</li>
+    <li>五件事：<span class="kw">①保证优质蛋白</span>（鸡鸭鱼虾白肉放心吃，血脂高者蛋黄限量）；<span class="kw">②增加膳食纤维</span>（粗粮、蔬果、豆类）；<span class="kw">③多吃不饱和脂肪酸</span>（橄榄油、坚果、深海鱼）；④补足维生素（绿叶菜水果）；⑤吃适量碳水（粗粮替代白米白面，别当主力）。</li>
+    <li>晚餐七分饱；可尝试轻断食（饥饿时胆固醇合成减少）。</li>
+    <li><span class="kw">护肝＝护血脂</span>：不乱吃保健品和药、减重（脂肪肝）、不熬夜、不吃霉变 / 生食、滴酒不沾。肝是血脂代谢的大本营。</li>
+  </ul>
+  <div class="rg"><span class="rec-tag">强烈推荐</span>积极控制体重改善脂肪肝；最适宜的饮酒量是滴酒不沾。</div>
+  <div class="rr"><span class="rec-tag">不推荐</span>吃「护肝片」保健品护肝——保健品也要经肝代谢，反而加重负担；也不推荐吃发霉食物、生的动物性食物。</div>
+</div>
+
+<!-- ================= 甘油三酯专题 ================= -->
+<div id="p-tg" role="tabpanel" aria-labelledby="tg-tg" hidden>
+
+  <div class="panel-h"><h3 style="margin:0;">甘油三酯水平分级<span class="star-badge">重点</span></h3></div>
+  <div class="viz-grid">
+    <div class="viz-stat"><div class="viz-stat-value">&lt;1.7</div><div class="text-muted">理想（mmol/L）</div></div>
+    <div class="viz-stat"><div class="viz-stat-value">1.7–2.3</div><div class="text-muted">临界升高：改善生活方式</div></div>
+    <div class="viz-stat"><div class="viz-stat-value">≥2.3</div><div class="text-muted">升高：开始积极干预</div></div>
+    <div class="viz-stat"><div class="viz-stat-value" style="color:var(--red);">≥5.6</div><div class="text-muted">胰腺炎风险大增：药物干预</div></div>
+  </div>
+
+  <div class="panel-h"><h3 style="margin:0;">三大危害</h3></div>
+  <div class="case-grid">
+    <div class="case-card"><h4>① 诱发急性胰腺炎（最凶险）</h4><p>黏稠的油堵塞胰管引发胰腺炎；<span class="kw">重症胰腺炎死亡率高达 30%，比心梗还高</span>，治愈后也易复发。≥5.6 mmol/L 风险大大增加，需药物治疗。</p></div>
+    <div class="case-card"><h4>② 增加心血管疾病风险</h4><p>若坏胆固醇伤害值是 100 分，甘油三酯约 10 分——比不上坏胆固醇，但远大于 0，日积月累同样堵塞血管。</p></div>
+    <div class="case-card"><h4>③ 导致胰岛素抵抗 → 糖尿病</h4><p>油脂让细胞「不听」胰岛素的话，血糖越积越多，最终发展成 2 型糖尿病。</p></div>
+  </div>
+  <div class="ry"><span class="rec-tag">一般推荐</span>出现黄色瘤或脂肪瘤，建议查一次血脂排除高甘油三酯。</div>
+
+  <div class="panel-h"><h3 style="margin:0;">降甘油三酯生活三招（生活方式干预永远第一位）</h3></div>
+  <ul class="tight">
+    <li><span class="kw">第一招：戒酒。</span>长期喝酒的人几乎没有甘油三酯不高的；戒酒效果立竿见影。酒精还增加肝脏脂肪合成、导致胰岛素抵抗。</li>
+    <li><span class="kw">第二招：控制油脂。</span>甘油三酯几乎都是「吃进去的」——管住嘴就能控制大半。杜绝<span class="kw">反式脂肪酸</span>（植物奶油、代可可脂、起酥油、高温油炸）；少吃<span class="kw">饱和脂肪酸</span>（&lt;总能量 10%，动物油、肥肉、红肉、全脂奶）；适当多吃<span class="kw">不饱和脂肪酸</span>（深海鱼、坚果、橄榄油 / 亚麻籽油）。每天烹调油 ≤3 小勺。</li>
+    <li><span class="kw">第三招：有氧运动＋减重。</span>每周 5–7 次、每次 30 分钟以上（快走、慢跑、游泳、爬山、球类）；体重降、胰岛素敏感性升，血脂自然降。</li>
+  </ul>
+  <div class="rg"><span class="rec-tag">强烈推荐</span>高甘油三酯人群戒酒、控制饱和 / 反式脂肪、适当多摄入不饱和脂肪、每周 5–7 次持续 30 分钟以上运动。</div>
+  <div class="rr"><span class="rec-tag">不推荐</span>指望保健品降甘油三酯；几乎所有保健品都需肝脏代谢，伤肝即伤血脂。</div>
+
+  <div class="panel-h"><h3 style="margin:0;">甘油三酯 vs 胆固醇：管理思路对照</h3></div>
+  <div class="table-responsive"><table class="table table-sm">
+    <thead><tr><th>维度</th><th>甘油三酯</th><th>胆固醇（LDL-C）</th></tr></thead>
+    <tbody>
+      <tr><td>主要来源</td><td>基本是吃进去的（油、酒、糖）</td><td>大部分由肝脏自身合成</td></tr>
+      <tr><td>头号危害</td><td>急性胰腺炎（≥5.6）</td><td>冠心病、心梗、脑梗</td></tr>
+      <tr><td>生活方式干预效果</td><td>非常好，戒酒控油立竿见影</td><td>有限（最多约降 30%），多为代谢问题</td></tr>
+      <tr><td>首选药物</td><td>贝特类 / EPA 处方鱼油（≥5.6 或高危）</td><td>他汀类（基石）</td></tr>
+      <tr><td>饮食胆固醇影响</td><td>高脂餐 / 饮酒次日即明显升高</td><td>与直接摄入关系小，靠改善代谢</td></tr>
+    </tbody>
+  </table></div>
+</div>
+
+<!-- ================= 用药指南 ================= -->
+<div id="p-med" role="tabpanel" aria-labelledby="tg-med" hidden>
+
+  <div class="panel-h"><h3 style="margin:0;">降胆固醇药物梯队</h3></div>
+  <div class="table-responsive"><table class="table table-sm">
+    <thead><tr><th>顺位</th><th>药物</th><th>机制</th><th>降幅</th><th>用法与要点</th></tr></thead>
+    <tbody>
+      <tr><td><span class="kw">首选</span></td><td>他汀类（阿托伐他汀、瑞舒伐他汀等）</td><td>抑制肝脏胆固醇合成的限速酶</td><td>高强度 &gt;50%；中强度 25%–50%</td><td>降胆固醇基石；全因死亡 ↓9%、心梗 ↓29%、脑梗 ↓14%；多数新型他汀任意时间服用，固定时间即可</td></tr>
+      <tr><td><span class="kw">第二</span></td><td>胆固醇吸收抑制剂（依折麦布 / 海博麦布）</td><td>把肠道和胆汁中的胆固醇拦在肠内</td><td>↓18%–20%</td><td>每日 1 片，早晚均可；安全性极好，一般与他汀联用不单用</td></tr>
+      <tr><td><span class="kw">第三</span></td><td>PCSK9 抑制剂（依洛尤单抗、托莱西单抗）</td><td>召回肝脏「门卫」受体，促进 LDL-C 分解</td><td>他汀基础上再 ↓60%</td><td>皮下注射，每两周或每月一针；副作用很小；用于他汀不耐受或超高危需大降幅者，多与他汀联用</td></tr>
+      <tr><td>谨慎</td><td>英克西兰（半年一针）</td><td>同样针对 PCSK9</td><td>降幅不错</td><td class="text-small">缺少心血管结局证据，超高危人群不推荐为省事选它</td></tr>
+    </tbody>
+  </table></div>
+  <div class="rg"><span class="rec-tag">强烈推荐</span>他汀对心血管总体益处与新发糖尿病风险之比约 9:1，需要用药就遵医嘱坚持，不因噎废食。</div>
+
+  <div class="panel-h"><h3 style="margin:0;">他汀怎么选（作者处方原则）</h3></div>
+  <ul class="tight">
+    <li>忙、作息乱、常忘吃药 → <span class="kw">阿托伐他汀 / 瑞舒伐他汀</span>（任意时间可服）。</li>
+    <li>心梗、脑梗史需要大降幅 → 直接 <span class="kw">阿托伐他汀 / 瑞舒伐他汀</span>（唯一能达高强度降脂的两款）。</li>
+    <li>肾功能很差甚至透析 → <span class="kw">阿托伐他汀</span>（无须按肾功能调量）。</li>
+    <li>心血管风险不高又特别顾忌副作用 → <span class="kw">匹伐他汀 / 普伐他汀 / 氟伐他汀</span>（安全性高、降脂幅度一般）。</li>
+    <li><span class="kw">6% 法则</span>：他汀剂量翻倍，疗效只多 6%，副作用却大增——不达标应联合用药而非加量。</li>
+  </ul>
+  <div class="rr"><span class="rec-tag">不推荐</span>首选第一代他汀（辛伐他汀、洛伐他汀）——副作用发生率相对更高，有替代就不选。</div>
+
+  <div class="panel-h"><h3 style="margin:0;">副作用识别与处理（重要数值表）</h3></div>
+  <div class="table-responsive"><table class="table table-sm">
+    <thead><tr><th>情况</th><th>数值分档</th><th>处理</th></tr></thead>
+    <tbody>
+      <tr><td rowspan="3">转氨酶升高（肝）</td><td>&lt;正常上限 3 倍</td><td>排除饮酒 / 发烧 / 肝炎等因素后：减量观察或换肝损风险低的他汀（匹伐 / 普伐）</td></tr>
+      <tr><td>＞3 倍</td><td>停药观察</td></tr>
+      <tr><td>＞3 倍且胆红素升高（＞2 倍上限）</td><td>立即停药、进一步检查</td></tr>
+      <tr><td rowspan="3">肌酸激酶升高（肌肉）</td><td>正常，仅轻微酸痛</td><td>无须调整，继续服药</td></tr>
+      <tr><td>＜4 倍上限且无症状</td><td>不停药，密切观察</td></tr>
+      <tr><td＞4 倍或有肌肉症状</td><td>停药，恢复正常后换其他代谢途径他汀；<span style="color:var(--red);">＞10 倍警惕肌溶解，立即就医</span></td></tr>
+    </tbody>
+  </table></div>
+  <ul class="tight">
+    <li>肝损多发生在<span class="kw">服药前 3 个月</span>，前期不出问题后期更少出；中国推荐服药 1–2 个月复查肝功能。</li>
+    <li>新发糖尿病：高强度他汀每治疗约 500 人增加 1 例，获益远大于风险。</li>
+    <li><span class="kw">葡萄柚（西柚）</span>抑制他汀代谢：每天 ≤240mL 西柚汁或半个，或换瑞舒伐 / 匹伐 / 普伐他汀。</li>
+    <li>相互作用药：贝特类（联用早贝特、晚他汀）、抗 HIV / 丙肝药、环孢素、地尔硫䓬 / 维拉帕米。</li>
+  </ul>
+  <div class="rr"><span class="rec-tag">不推荐</span>吃保肝药预防他汀肝损伤——中外指南均不推荐，「让肝脏休息就是最大的保护」；辅酶 Q10 不推荐也不反对。</div>
+
+  <div class="panel-h"><h3 style="margin:0;">复查节奏</h3></div>
+  <ul class="tight">
+    <li>开始降脂治疗：<span class="num">1–2 个月</span>复查<span class="kw">大生化</span>（肝肾功能＋电解质＋肌酶＋血脂谱，不只查血脂）。</li>
+    <li>稳定且无副作用：每 <span class="num">3–6 个月</span>复查血脂。</li>
+    <li>调整剂量 / 换药后：再按 <span class="num">1–2 个月</span>复查，直至稳定。</li>
+    <li>看结果时先明确<span class="kw">自己的目标值</span>再对照数值，而不是看箭头。</li>
+  </ul>
+
+  <div class="panel-h"><h3 style="margin:0;">能不能停药？</h3></div>
+  <div class="viz-grid">
+    <div class="card"><div class="text-muted" style="font-size:12px;">可能停药的三个前提（同时满足）</div><ul class="tight" style="margin:4px 0 0 0;"><li>血脂水平控制稳定（越低越可能停）</li><li>单药即可控制（弱效他汀能控住更有希望）</li><li>未引起任何器官损害</li></ul><p class="text-small" style="margin:6px 0 0 0;">停药后仍需定期复查，血脂回升就重新服药。</p></div>
+    <div class="card" style="border-color:var(--red);"><div class="text-muted" style="font-size:12px;">绝不能自行停药的人群</div><p style="margin:6px 0 0 0;">目标为 <span class="num">1.4 / 1.8</span> 者（冠心病、支架术后、脑梗死、糖尿病等超高 / 极高危）：无论血脂降得多低或出现副作用，都<span class="kw">不能停药</span>——可换副作用小的药，但不能不用药。</p></div>
+  </div>
+
+  <div class="panel-h"><h3 style="margin:0;">降甘油三酯药物</h3></div>
+  <div class="table-responsive"><table class="table table-sm">
+    <thead><tr><th>药物</th><th>降幅</th><th>要点</th></tr></thead>
+    <tbody>
+      <tr><td>他汀</td><td>↓10%–33%</td><td>适合「胆固醇高为主＋轻度 TG 高」，顺带降低胰腺炎风险 23%</td></tr>
+      <tr><td><span class="kw">贝特类</span></td><td>↓50%–70%</td><td>降 TG 王牌；副作用类似他汀；与他汀联用早贝特、晚他汀；肝衰 / 透析 / 胆结石者不宜</td></tr>
+      <tr><td><span class="kw">EPA 处方鱼油</span></td><td>↓20%–30%（重度＞30%）</td><td>需 ≥3g/天（保健品做不到）；REDUCE-IT 研究：心血管事件 ↓25%；EPA 纯度 ≥97% 才算处方级；房颤者避免；腹泻常见（约 30%）</td></tr>
+    </tbody>
+  </table></div>
+  <div class="rr"><span class="rec-tag">不推荐</span>用保健品鱼油降血脂——每粒 EPA 常不足 500mg，要吃到 6–20 粒才够剂量。</div>
+
+  <div class="panel-h"><h3 style="margin:0;">被打入冷宫 / 常被用错的降脂药</h3></div>
+  <div class="rr"><span class="rec-tag">不推荐</span>
+    <ul class="rec-list">
+      <li>普罗布考：坏、好胆固醇一起降，对心血管无益。</li>
+      <li>胆汁酸螯合剂（考来烯胺等）：疗效弱、胃肠反应重、影响脂溶性维生素吸收。</li>
+      <li>烟酸类（阿西莫司）：不改善结局，副作用一大堆（面部潮红、肝损、升高血糖尿酸）。</li>
+      <li>红曲类药物（血脂康 / 脉必泰）：本质是第一代洛伐他汀类似物，有效成分少、作用弱。</li>
+      <li>鱼油降胆固醇：鱼油对降胆固醇几乎无效，别用错方向。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ================= 饮食·运动 ================= -->
+<div id="p-diet" role="tabpanel" aria-labelledby="tg-diet" hidden>
+
+  <div class="panel-h"><h3 style="margin:0;">一张图记住三种脂肪</h3></div>
+  <div class="viz-grid">
+    <div class="viz-stat" style="border-left:3px solid var(--green);"><div class="viz-stat-value" style="font-size:16px;">不饱和脂肪酸</div><div class="text-muted">好油：橄榄油、亚麻籽油、深海鱼、坚果——适当多吃</div></div>
+    <div class="viz-stat" style="border-left:3px solid var(--yellow);"><div class="viz-stat-value" style="font-size:16px;">饱和脂肪酸</div><div class="text-muted">限量：&lt;总能量 10%——常温会凝固的油、肥肉、红肉、全脂奶</div></div>
+    <div class="viz-stat" style="border-left:3px solid var(--red);"><div class="viz-stat-value" style="font-size:16px;">反式脂肪酸</div><div class="text-muted">坚决杜绝：植物奶油、代可可脂、起酥油、高温油炸</div></div>
+  </div>
+
+  <div class="panel-h"><h3 style="margin:0;">食用油怎么选（每人每天 ≤3 小勺）</h3></div>
+  <div class="table-responsive"><table class="table table-sm">
+    <thead><tr><th>油</th><th>优点</th><th>短板</th><th>适合做法</th></tr></thead>
+    <tbody>
+      <tr><td>橄榄油</td><td>不饱和脂肪高、含多酚抗氧化物，助调节血脂</td><td>初榨橄榄油不耐高温</td><td>初榨凉拌；精炼可炒</td></tr>
+      <tr><td>花生油</td><td>不饱和脂肪 &gt;80%，耐热、香味好</td><td>几乎不含 Omega-3，饱和脂肪偏高</td><td>煎炒烹炸均可</td></tr>
+      <tr><td>大豆油</td><td>便宜易吸收，含维 E、卵磷脂</td><td>不耐热，高温易起泡产生有害物</td><td>炖煮为主</td></tr>
+      <tr><td>菜籽油</td><td>饱和脂肪低、烟点高（约 204°C）</td><td>热量偏高、或含少量芥酸</td><td>炒、烘焙、煎</td></tr>
+      <tr><td>葵花籽油</td><td>富含维 E，耐热</td><td>Omega-6 过多易失衡，易氧化</td><td>避免久高温 / 阳光直射</td></tr>
+      <tr><td>南瓜籽油</td><td>不饱和脂肪＋锌镁铁、植物甾醇</td><td>烟点低、热量高</td><td>凉拌低温</td></tr>
+      <tr><td>调和油</td><td>配方好则取长补短</td><td>品质难把控（可能掺棕榈油）</td><td>看懂配料表再买</td></tr>
+      <tr><td>猪油</td><td>香</td><td>饱和脂肪近一半、热量胆固醇双高</td><td>偶用，勿作唯一用油</td></tr>
+    </tbody>
+  </table></div>
+  <div class="rg"><span class="rec-tag">强烈推荐</span>每天用油 ≤3 小勺；开封后 3 个月内用完（买小桶）；密封避光阴凉储存。</div>
+  <div class="rr"><span class="rec-tag">不推荐</span>高温油炸 / 爆炒（不饱和脂肪会变反式脂肪）；反复使用隔夜油。</div>
+
+  <div class="panel-h"><h3 style="margin:0;">宜吃 vs 忌吃清单</h3></div>
+  <div class="viz-grid">
+    <div class="card" style="border-left:3px solid var(--green);"><div class="text-muted" style="font-size:12px;">适合多吃</div><ul class="tight" style="margin:4px 0 0 0;">
+      <li><span class="kw">高纤维</span>：燕麦、糙米、全麦、扁豆、黑豆、鹰嘴豆</li>
+      <li><span class="kw">好脂肪</span>：三文鱼、沙丁鱼、金枪鱼；杏仁、核桃、腰果（适量）</li>
+      <li><span class="kw">植物甾醇</span>：强化牛奶 / 麦片、亚麻籽、奇亚籽</li>
+      <li><span class="kw">蔬果</span>：菠菜、西蓝花、苹果、梨、橙、草莓</li>
+      <li><span class="kw">其他</span>：绿茶、豆腐豆浆、无糖酸奶、香蕉、番茄、黄瓜</li>
+    </ul></div>
+    <div class="card" style="border-left:3px solid var(--red);"><div class="text-muted" style="font-size:12px;">避免或严格限制</div><ul class="tight" style="margin:4px 0 0 0;">
+      <li><span class="kw">饱和脂肪</span>：肥红肉、香肠培根火腿、黄油奶酪、全脂奶、椰子油棕榈油</li>
+      <li><span class="kw">反式脂肪</span>：饼干蛋糕派皮薯片、炸鸡薯条汉堡</li>
+      <li><span class="kw">高胆固醇</span>：动物内脏；蛋黄限量（每日胆固醇 &lt;300mg）</li>
+      <li><span class="kw">高糖</span>：甜点、含糖饮料（直接升甘油三酯）</li>
+      <li><span class="kw">精制碳水 + 高盐 + 酒</span>：白米白面换粗粮；腌菜方便面少碰；最好滴酒不沾</li>
+    </ul></div>
+  </div>
+
+  <div class="panel-h"><h3 style="margin:0;">看食物标签：揪出隐形反式脂肪</h3></div>
+  <ul class="tight">
+    <li>看「营养成分表」最后一列 NRV%：吃 100g 占全天需要量的比例。高蛋白可取，高脂肪、高热量慎选。</li>
+    <li>配料表出现以下成分＝可能含反式脂肪，尽量不买：<span class="kw">代可可脂、植物黄油（人造黄油 / 麦淇淋）、氢化植物油、部分氢化植物油、氢化脂肪、精炼植物油、氢化菜油、氢化棕榈油、固体菜油、酥油、人造酥油、雪白奶油、起酥油</span>。</li>
+    <li>陷阱：「0 反式脂肪」的国家标准是每份 &lt;0.3g 即可标 0——配料表含上述成分的照样少吃。</li>
+  </ul>
+
+  <div class="panel-h"><h3 style="margin:0;">保健品与「神奇疗法」真相</h3></div>
+  <div class="rr"><span class="rec-tag">不推荐</span>
+    <ul class="rec-list">
+      <li><span class="kw">保健品鱼油</span>：EPA 含量低，降脂剂量远远不够；爱吃鱼的人无须补。</li>
+      <li><span class="kw">红曲饮片</span>：天然 ≠ 更好，有效成分就是弱效的第一代洛伐他汀。</li>
+      <li><span class="kw">水蛭素</span>（蚂蟥提取物）：无任何降脂作用，抗凝成分反增出血风险，还贵。</li>
+      <li><span class="kw">三七提取物</span>：降脂作用极弱，血小板少 / 凝血差 / 正在服药者有出血风险。</li>
+      <li><span class="kw">「洗血」疗法（血液滤过）</span>：效果仅维持约 2 周，好坏胆固醇一起滤走，还有感染出血风险；仅用于药物难控制的极高血脂或重症胰腺炎。</li>
+      <li><span class="kw">磁疗 / 水晶 / 气功 / 泥灸降脂</span>：无一靠谱。</li>
+    </ul>
+  </div>
+
+  <div class="panel-h"><h3 style="margin:0;">运动处方（3 个月可降 LDL-C 约 30%）</h3></div>
+  <ul class="tight">
+    <li><span class="kw">动就比不动好</span>：久坐伤害最大。</li>
+    <li><span class="kw">首选有氧</span>：快走、慢跑、游泳、骑车，可轮换；每周 ≥150 分钟（每天 20–30 分钟），适应后可加到 300 分钟。</li>
+    <li><span class="kw">阻抗运动</span>每周 2 次：俯卧撑、深蹲、仰卧起坐，增肌护关节。</li>
+    <li><span class="kw">强度自测两法</span>：①心率 =（220 − 年龄）× 60%–85%；②「说话测试」——喘到能一口气说「我今天运动了，我血脂一定能降」说完就得换气，正合适。</li>
+    <li>循序渐进、先热身后拉伸；只拼步数不喘的运动效果差还磨膝盖。</li>
+  </ul>
+  <div class="card" style="padding:14px;">
+    <div class="form-label" for="hr-age">运动心率计算器：输入年龄</div>
+    <div class="viz-row" style="gap:8px;">
+      <input class="form-control" type="number" id="hr-age" min="10" max="90" value="45" style="max-width:110px;" aria-label="年龄">
+      <span>岁</span>
+    </div>
+    <div class="calc-out" id="hr-out" aria-live="polite" style="margin-top:8px;"></div>
+    <p class="text-small" style="margin:6px 0 0 0;">对应（220 − 年龄）× 60%–85% 的目标心率区间（次 / 分）。</p>
+  </div>
+
+  <div class="card" style="padding:14px; margin-top:10px;">
+    <div class="form-label">体重与内脏脂肪自测</div>
+    <div class="viz-row" style="gap:8px;">
+      <input class="form-control" type="number" id="bmi-h" min="120" max="220" value="170" style="max-width:100px;" aria-label="身高厘米">
+      <span>cm</span>
+      <input class="form-control" type="number" id="bmi-w" min="30" max="200" value="70" style="max-width:100px;" aria-label="体重千克">
+      <span>kg</span>
+    </div>
+    <div class="calc-out" id="bmi-out" aria-live="polite" style="margin-top:8px;"></div>
+    <p class="text-small" style="margin:6px 0 0 0;">BMI = 体重 / 身高²；≥24 为超重、≥28 为肥胖。腰围女 &gt;75cm、男 &gt;80cm 提示内脏脂肪过多，更需关注血脂。</p>
+  </div>
+</div>
+
+<!-- ================= 实战案例 ================= -->
+<div id="p-case" role="tabpanel" aria-labelledby="tg-case" hidden>
+
+  <div class="panel-h"><h3 style="margin:0;">七个真实案例：同一张化验单，不同的人生方案</h3></div>
+  <div class="case-grid">
+    <div class="case-card"><h4>案例 1 ｜ 36 岁程序员：LDL-C 3.51 要吃药吗</h4><p>无任何基础病 → 目标 3.4。距离目标不远，生活方式干预最多可降 30% → <span class="kw">暂不用药</span>：戒烟限酒、减重 5kg（BMI 到 24 以下）、少油少盐、每周 150 分钟有氧。3 个月复查达标，之后每年复查即可；若复查仍超标则启动他汀。</p></div>
+    <div class="case-card"><h4>案例 2 ｜ 41 岁 + 高血压：LDL-C 3.78</h4><p>有高血压 → 目标 2.6，距离远；且他生活方式已经很健康，再干预空间小（代谢问题）→ <span class="kw">直接开始他汀</span>，规律复查。</p></div>
+    <div class="case-card"><h4>案例 3 ｜ 55 岁三高经理：LDL-C 3.64</h4><p>糖尿病＋高血压 → 目标 1.8，需降幅 &gt;50%，单用他汀难达标 → <span class="kw">他汀＋依折麦布</span>起始。同时调好血压血糖，「三高」协同伤血管。</p></div>
+    <div class="case-card"><h4>案例 4 ｜ 56 岁两次支架：LDL-C 2.14「没箭头」</h4><p>心梗史＋再支架 → <span class="kw">超高危，目标 1.4</span>。化验单没箭头也远未达标 → 他汀基础上联合依折麦布或 PCSK9 针，仍不达标则三联。教训：<span class="kw">没箭头 ≠ 没问题</span>，绝不能自行停药。</p></div>
+    <div class="case-card"><h4>案例 5 ｜ 23 岁研究生：LDL-C 6.5＋父母早发冠心病</h4><p>远超 4.9＋典型家族史 → 高度怀疑<span class="kw">家族性高胆固醇血症</span>，目标 2.6；建议带父母做基因检测确认，确诊即尽早治疗。</p></div>
+    <div class="case-card"><h4>案例 6 ｜ 32 岁美食主播：单纯 TG 升高（&lt;5.6）</h4><p>无心血管病、未达 5.6 → <span class="kw">暂不吃药</span>，控饮食＋运动即可（TG 对饮食极敏感）。注意：已放支架 / 心梗脑梗的高危人群，TG 应严格降到 1.7 以下，做不到就用处方 EPA 鱼油。</p></div>
+    <div class="case-card"><h4>案例 7 ｜ 49 岁酗酒销售：TG 8.27 警惕胰腺炎</h4><p>TG ≥5.6 急性胰腺炎风险大增 → <span class="kw">立刻药物干预</span>：首选贝特类＋戒酒减重；仍高加处方鱼油。提醒：用降 TG 药后 LDL-C 反而升高属正常代谢现象，不是停药理由，必要时联合他汀。</p></div>
+  </div>
+
+  <div class="panel-h"><h3 style="margin:0;">红色警报：这些情况立即就医</h3></div>
+  <div class="flag-120">
+    <div><span class="kw">脑梗「120」症状</span>：脸不对称、一侧手臂抬不起、说话不清 → 立即拨 120。</div>
+    <div><span class="kw">典型胸痛</span>：胸骨后压榨感、活动诱发、放射至肩臂、数分钟缓解 → 尽快心内科评估。</div>
+    <div><span class="kw">甘油三酯 ≥5.6</span>：尽快药物降 TG，防急性胰腺炎。</div>
+    <div><span class="kw">服他汀后肌酶 &gt;10 倍上限</span>或剧烈肌痛、酱油色尿 → 警惕肌溶解，立即就诊。</div>
+  </div>
+
+  <p class="footnote">本笔记为《中国人的血脂管理指南》（鹤立烟雨 著）内容摘编，仅供学习参考，不能替代医生面诊；用药与治疗方案请以主治医生意见为准。书中另附一周降脂食谱（表 4-2）及「降脂行动地图」，建议阅读原书获取。</p>
+</div>
+
+<script>
+(function () {
+  var root = document.getElementById('lipid-guide-notes');
+  if (!root) return;
+
+  /* ---- 风险自测向导 ---- */
+  var wizQ = root.querySelector('#wiz-q');
+  var wizStep = root.querySelector('#wiz-step');
+  var wizResult = root.querySelector('#wiz-result');
+  var btnYes = root.querySelector('#wiz-yes');
+  var btnNo = root.querySelector('#wiz-no');
+  var btnRestart = root.querySelector('#wiz-restart');
+
+  var steps = {
+    q1: { step: '第 1 / 4 问', text: '有没有冠心病，或冠状动脉放过支架？', yes: 'q1b', no: 'q2' },
+    q1b: { step: '第 1 问（追问）', text: '以前是否有过脑梗死、心肌梗死，或患有糖尿病？', yes: 'r14', no: 'r18c' },
+    q2: { step: '第 2 / 4 问', text: '有没有糖尿病？', yes: 'r18d', no: 'q3' },
+    q3: { step: '第 3 / 4 问', text: '有没有高血压、慢性肾脏病，或低密度脂蛋白胆固醇 ≥4.9？', yes: 'r26h', no: 'q4' },
+    q4: { step: '第 4 / 4 问', text: '低密度脂蛋白胆固醇是否超过 3.4？', yes: 'r34', no: 'rok' }
+  };
+  var results = {
+    r14: { level: '超高危', val: '1.4', color: 'var(--red)', note: '还需比基线降低 50% 以上。此类人群（冠心病＋心梗 / 脑梗 / 糖尿病等）任何情况下都不应自行停药。' },
+    r18c: { level: '极高危', val: '1.8', color: 'var(--red)', note: '还需比基线降低 50% 以上。冠心病人群需坚持长期降脂治疗。' },
+    r18d: { level: '极高危', val: '1.8', color: 'var(--red)', note: '糖尿病患者需比常人更严格控制坏胆固醇。' },
+    r26h: { level: '高危', val: '2.6', color: 'var(--orange)', note: '有高血压 / 慢性肾病 / 基线 LDL-C ≥4.9 者目标更严格。' },
+    r34: { level: '低 / 中危', val: '3.4', color: 'var(--yellow)', note: '先积极生活方式干预（最多可降约 30%），数月后复查不达标再考虑药物。' },
+    rok: { level: '目前达标', val: '✓', color: 'var(--green)', note: '当前 LDL-C 未超 3.4：继续保持健康生活方式，按年龄频率定期复查即可。' }
+  };
+  var cur = 'q1';
+
+  function show(key) {
+    cur = key;
+    btnRestart.hidden = false;
+    if (steps[key]) {
+      wizStep.textContent = steps[key].step;
+      wizQ.textContent = steps[key].text;
+      wizResult.innerHTML = '';
+      btnYes.hidden = false; btnNo.hidden = false;
+    } else {
+      var r = results[key];
+      wizStep.textContent = '结果';
+      wizQ.textContent = '你的危险分层与控制目标';
+      btnYes.hidden = true; btnNo.hidden = true;
+      wizResult.innerHTML =
+        '<div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">' +
+        '<div class="wiz-result-val" style="color:' + r.color + ';">' + r.val + (r.val === '✓' ? '' : ' <span style="font-size:14px;">mmol/L 以下</span>') + '</div>' +
+        '<span class="viz-badge">' + r.level + '</span></div>' +
+        '<p style="margin:8px 0 0 0;">' + r.note + '</p>';
+    }
+  }
+  function reset() { btnRestart.hidden = true; show('q1'); }
+  btnYes.addEventListener('click', function () { show(steps[cur].yes); });
+  btnNo.addEventListener('click', function () { show(steps[cur].no); });
+  btnRestart.addEventListener('click', reset);
+  reset();
+
+  /* ---- 运动心率计算器 ---- */
+  var hrAge = root.querySelector('#hr-age');
+  var hrOut = root.querySelector('#hr-out');
+  function calcHr() {
+    var a = parseFloat(hrAge.value);
+    if (isNaN(a) || a < 10 || a > 90) { hrOut.textContent = '请输入 10–90 之间的年龄'; return; }
+    var lo = Math.round((220 - a) * 0.6);
+    var hi = Math.round((220 - a) * 0.85);
+    hrOut.textContent = a + ' 岁的目标运动心率：' + lo + ' – ' + hi + ' 次 / 分';
+  }
+  hrAge.addEventListener('input', calcHr);
+  calcHr();
+
+  /* ---- BMI ---- */
+  var bmiH = root.querySelector('#bmi-h');
+  var bmiW = root.querySelector('#bmi-w');
+  var bmiOut = root.querySelector('#bmi-out');
+  function calcBmi() {
+    var h = parseFloat(bmiH.value), w = parseFloat(bmiW.value);
+    if (isNaN(h) || isNaN(w) || h <= 0 || w <= 0) { bmiOut.textContent = '请输入身高和体重'; return; }
+    var v = w / Math.pow(h / 100, 2);
+    var tag = v < 18.5 ? '偏瘦' : (v < 24 ? '正常' : (v < 28 ? '超重' : '肥胖'));
+    var color = v < 24 ? 'var(--green)' : (v < 28 ? 'var(--yellow)' : 'var(--red)');
+    bmiOut.innerHTML = 'BMI ≈ <span style="color:' + color + ';">' + v.toFixed(1) + '</span>（' + tag + '）';
+  }
+  bmiH.addEventListener('input', calcBmi);
+  bmiW.addEventListener('input', calcBmi);
+  calcBmi();
+})();
+</script>
+
+</div>
+
+</div>
+<script>
+(function(){
+  var links=document.querySelectorAll('.nav-link[role=tab]');
+  links.forEach(function(btn){
+    btn.addEventListener('click',function(){
+      links.forEach(function(b){b.classList.remove('active');b.setAttribute('aria-selected','false')});
+      btn.classList.add('active');btn.setAttribute('aria-selected','true');
+      var id=btn.getAttribute('aria-controls');
+      document.querySelectorAll('[role=tabpanel]').forEach(function(p){p.hidden=(p.id!==id)});
+    });
+  });
+})();
+</script>
+</body>
+</html>
